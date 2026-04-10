@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | WeCleanIt Customer Portal</title>
+    
+    <!-- Google Fonts: Syne & DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkblue: '#0F5A96',
+                        skyblue: '#74B4D9',
+                        lightsky: '#E0F2FE',
+                        neutralbg: '#F0F9FF',
+                    },
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        heading: ['Syne', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="font-sans bg-neutralbg text-gray-800 antialiased pb-20 md:pb-0 min-h-screen">
+
+    <!-- Top Navigation (Desktop) & Header (Mobile) -->
+    <div class="bg-white shadow-sm border-b border-lightsky sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-darkblue">
+                <i class="fa-solid fa-sparkles text-skyblue text-xl"></i>
+                <h1 class="text-xl font-bold font-heading tracking-tight">WeCleanIt</h1>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-6">
+                <button onclick="switchTab('dashboard')" class="nav-desktop font-bold text-darkblue outline-none" id="nav-desktop-dashboard">Dashboard</button>
+                <button onclick="switchTab('pesan')" class="nav-desktop font-bold text-gray-500 hover:text-skyblue outline-none" id="nav-desktop-pesan">Pesan Layanan</button>
+                <button onclick="switchTab('riwayat')" class="nav-desktop font-bold text-gray-500 hover:text-skyblue outline-none" id="nav-desktop-riwayat">Riwayat</button>
+                <button onclick="window.location.href='auth.html'" class="text-red-500 font-bold flex items-center gap-2 hover:text-red-700 outline-none">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="max-w-4xl mx-auto px-4 py-6">
+
+        <!-- ================= TAB: DASHBOARD ================= -->
+        <div id="tab-dashboard" class="fade-in space-y-6 block">
+            
+            <!-- Sapaan User -->
+            <div>
+                <h2 class="text-2xl font-bold text-darkblue">Halo, Budi! 👋</h2>
+                <p class="text-gray-500 text-sm mt-1">Siap untuk kamar yang lebih bersih hari ini?</p>
+            </div>
+
+            <!-- Pesanan Aktif -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-skyblue/30 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-skyblue"></div>
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1 block">Pesanan Aktif Anda</span>
+                        <h3 class="font-bold text-lg text-gray-800">Bersih Menyeluruh</h3>
+                    </div>
+                    <span class="px-3 py-1 rounded-full text-xs font-bold border bg-yellow-100 text-yellow-700 border-yellow-200 flex items-center gap-1">
+                        <i class="fa-regular fa-clock"></i> Menunggu Konfirmasi
+                    </span>
+                </div>
+                <div class="flex items-center text-sm text-gray-600 mb-6 gap-2">
+                    <i class="fa-regular fa-calendar text-darkblue"></i>
+                    Jadwal: <strong class="text-gray-800">11 Apr 2026, 10:00 WITA</strong>
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="switchTab('riwayat')" class="px-5 py-2 bg-lightsky text-darkblue rounded-xl font-bold text-sm hover:bg-skyblue hover:text-white transition-colors outline-none">
+                        Lihat Detail
+                    </button>
+                    <button onclick="cancelOrder('ORD-9821')" class="px-5 py-2 bg-white border border-red-200 text-red-500 rounded-xl font-bold text-sm hover:bg-red-50 transition-colors outline-none">
+                        Batalkan
+                    </button>
+                </div>
+            </div>
+
+            <!-- Shortcut Pesan Ulang -->
+            <div class="bg-gradient-to-r from-darkblue to-skyblue rounded-3xl p-6 text-white shadow-lg flex items-center justify-between relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="font-bold text-lg mb-1">Kamar sudah mulai kotor?</h3>
+                    <p class="text-lightsky text-sm mb-4">Pesan ulang paket favorit Anda dalam 1 klik.</p>
+                    <button onclick="switchTab('pesan')" class="bg-white text-darkblue px-5 py-2 rounded-full font-bold text-sm shadow-md hover:bg-neutralbg transition-all outline-none">
+                        Pesan Bersih Standar
+                    </button>
+                </div>
+                <i class="fa-solid fa-sparkles text-7xl text-white/10 absolute right-4 bottom-4 transform rotate-12 hidden sm:block"></i>
+            </div>
+
+            <!-- Riwayat Singkat (3 Terbaru) -->
+            <div>
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg text-gray-800">Pesanan Terakhir</h3>
+                    <button onclick="switchTab('riwayat')" class="text-sm font-bold text-skyblue hover:text-darkblue flex items-center gap-1 outline-none">
+                        Lihat Semua <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+                <div class="space-y-3">
+                    <!-- Item 1 -->
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-neutralbg rounded-full flex items-center justify-center text-skyblue">
+                                <i class="fa-solid fa-check-circle text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-gray-800 text-sm">Bersih Standar</p>
+                                <p class="text-xs text-gray-500">05 Apr 2026</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-green-100 text-green-700">Selesai</span>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-red-50 rounded-full flex items-center justify-center text-red-400">
+                                <i class="fa-solid fa-xmark-circle text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-gray-800 text-sm">Bersih Ekstra</p>
+                                <p class="text-xs text-gray-500">28 Mar 2026</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-red-100 text-red-700">Dibatalkan</span>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-neutralbg rounded-full flex items-center justify-center text-skyblue">
+                                <i class="fa-solid fa-check-circle text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-gray-800 text-sm">Bersih Menyeluruh</p>
+                                <p class="text-xs text-gray-500">15 Mar 2026</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-green-100 text-green-700">Selesai</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB: RIWAYAT PESANAN ================= -->
+        <div id="tab-riwayat" class="hidden fade-in space-y-4">
+            <h2 class="text-2xl font-bold text-darkblue mb-6">Riwayat Pesanan</h2>
+            
+            <!-- Active Order Card in History -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border-2 border-skyblue/50 mb-6">
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-sm font-bold text-gray-800">ORD-9821</span>
+                    <span class="px-3 py-1 rounded-full text-xs font-bold border bg-yellow-100 text-yellow-700 border-yellow-200 flex items-center gap-1">
+                        <i class="fa-regular fa-clock"></i> Menunggu Konfirmasi
+                    </span>
+                </div>
+                <h3 class="font-bold text-lg text-darkblue mb-1">Bersih Menyeluruh</h3>
+                <p class="text-sm text-gray-600 flex items-center gap-2 mb-4">
+                    <i class="fa-regular fa-calendar"></i> 11 Apr 2026, 10:00 WITA
+                </p>
+                <div class="pt-4 border-t border-gray-100">
+                    <button onclick="cancelOrder('ORD-9821')" class="w-full py-2 text-center text-sm font-bold text-red-500 hover:bg-red-50 rounded-lg transition-colors outline-none">
+                        Batalkan Pesanan
+                    </button>
+                </div>
+            </div>
+
+            <h3 class="font-bold text-gray-800 mt-8 mb-4">Pesanan Terdahulu</h3>
+            <div class="space-y-4">
+                <!-- History Item 1 -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-sm font-bold text-gray-500">ORD-9750</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-green-100 text-green-700 flex items-center gap-1">
+                            <i class="fa-solid fa-check"></i> Selesai
+                        </span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-1">Bersih Standar</h3>
+                    <p class="text-sm text-gray-500 mb-4">05 Apr 2026</p>
+                    <button class="text-sm font-bold text-skyblue flex items-center gap-2 hover:text-darkblue outline-none">
+                        Beri Ulasan Bintang <i class="fa-solid fa-star text-yellow-400"></i>
+                    </button>
+                </div>
+
+                <!-- History Item 2 -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-sm font-bold text-gray-500">ORD-9622</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-red-100 text-red-700 flex items-center gap-1">
+                            <i class="fa-solid fa-xmark"></i> Dibatalkan
+                        </span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-1">Bersih Ekstra</h3>
+                    <p class="text-sm text-gray-500 mb-4">28 Mar 2026</p>
+                </div>
+
+                <!-- History Item 3 -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-sm font-bold text-gray-500">ORD-9510</span>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-green-100 text-green-700 flex items-center gap-1">
+                            <i class="fa-solid fa-check"></i> Selesai
+                        </span>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-1">Bersih Menyeluruh</h3>
+                    <p class="text-sm text-gray-500 mb-4">15 Mar 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB: PESAN LAYANAN (4-STEP WIZARD) ================= -->
+        <div id="tab-pesan" class="hidden fade-in pb-10">
+            
+            <!-- Header & Step Indicator -->
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <button id="btn-back-step" onclick="prevStep()" class="text-gray-500 hover:text-darkblue flex items-center text-sm font-bold outline-none" style="visibility: hidden;">
+                        <i class="fa-solid fa-chevron-left mr-1"></i> Kembali
+                    </button>
+                    <span id="step-indicator-text" class="text-sm font-bold text-skyblue">Langkah 1 dari 4</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div id="progress-bar-fill" class="bg-skyblue h-2.5 rounded-full transition-all duration-300" style="width: 25%"></div>
+                </div>
+            </div>
+
+            <!-- Step 1: Pilih Paket -->
+            <div id="step-1" class="space-y-4">
+                <h2 class="text-2xl font-bold text-darkblue mb-2">Pilih Paket Kebersihan</h2>
+                <p class="text-gray-500 text-sm mb-4">Pilih layanan yang paling sesuai dengan kebutuhan kamar Anda.</p>
+                
+                <!-- Package: Standar -->
+                <div onclick="selectPackage('Bersih Standar', 50000, this)" class="pkg-card p-5 rounded-2xl border-2 border-gray-100 bg-white cursor-pointer transition-all hover:border-lightsky">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-gray-800">Bersih Standar</h3>
+                        <div class="w-6 h-6 rounded-full flex items-center justify-center border-2 border-gray-300 indicator-circle">
+                            <i class="fa-solid fa-check text-[10px] hidden check-icon text-white"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-3">Sapu, pel, rapihkan kasur, buang sampah</p>
+                    <span class="font-bold text-darkblue">Rp 50.000</span>
+                </div>
+
+                <!-- Package: Menyeluruh -->
+                <div onclick="selectPackage('Bersih Menyeluruh', 85000, this)" class="pkg-card p-5 rounded-2xl border-2 border-gray-100 bg-white cursor-pointer transition-all hover:border-lightsky">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-gray-800">Bersih Menyeluruh</h3>
+                        <div class="w-6 h-6 rounded-full flex items-center justify-center border-2 border-gray-300 indicator-circle">
+                            <i class="fa-solid fa-check text-[10px] hidden check-icon text-white"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-3">Termasuk Standar + Sikat KM + Kaca</p>
+                    <span class="font-bold text-darkblue">Rp 85.000</span>
+                </div>
+
+                <!-- Package: Ekstra -->
+                <div onclick="selectPackage('Bersih Ekstra', 150000, this)" class="pkg-card p-5 rounded-2xl border-2 border-gray-100 bg-white cursor-pointer transition-all hover:border-lightsky">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-gray-800">Bersih Ekstra</h3>
+                        <div class="w-6 h-6 rounded-full flex items-center justify-center border-2 border-gray-300 indicator-circle">
+                            <i class="fa-solid fa-check text-[10px] hidden check-icon text-white"></i>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mb-3">Termasuk Menyeluruh + Kerak + Disinfektan</p>
+                    <span class="font-bold text-darkblue">Rp 150.000</span>
+                </div>
+
+                <button id="btn-next-1" disabled onclick="nextStep()" class="w-full mt-6 py-3 bg-darkblue disabled:bg-gray-300 disabled:opacity-70 disabled:cursor-not-allowed text-white rounded-xl font-bold transition-colors outline-none">
+                    Lanjut Pilih Jadwal
+                </button>
+            </div>
+
+            <!-- Step 2: Pilih Jadwal -->
+            <div id="step-2" class="space-y-4 hidden">
+                <h2 class="text-2xl font-bold text-darkblue mb-2">Tentukan Jadwal</h2>
+                <div class="bg-yellow-50 border border-yellow-200 text-yellow-800 text-xs p-3 rounded-lg flex items-start gap-2 mb-4">
+                    <i class="fa-solid fa-circle-exclamation shrink-0 mt-0.5"></i>
+                    <p>Pemesanan minimal <strong>H-1</strong>. Tidak melayani pemesanan untuk hari yang sama.</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-calendar text-skyblue"></i> Tanggal Kedatangan
+                    </label>
+                    <input type="date" id="booking-date" onchange="validateStep2()" class="w-full p-3 border border-gray-200 rounded-xl outline-none focus:border-skyblue focus:ring-2 focus:ring-lightsky font-sans">
+                </div>
+
+                <div class="mt-4">
+                    <label class="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                        <i class="fa-regular fa-clock text-skyblue"></i> Slot Waktu
+                    </label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="selectTime('08:00 - 10:00', this)" class="time-btn py-3 rounded-xl border border-gray-200 bg-white text-gray-600 font-bold text-sm transition-all hover:border-skyblue outline-none">08:00 - 10:00</button>
+                        <button onclick="selectTime('10:00 - 12:00', this)" class="time-btn py-3 rounded-xl border border-gray-200 bg-white text-gray-600 font-bold text-sm transition-all hover:border-skyblue outline-none">10:00 - 12:00</button>
+                        <button onclick="selectTime('13:00 - 15:00', this)" class="time-btn py-3 rounded-xl border border-gray-200 bg-white text-gray-600 font-bold text-sm transition-all hover:border-skyblue outline-none">13:00 - 15:00</button>
+                        <button onclick="selectTime('15:00 - 17:00', this)" class="time-btn py-3 rounded-xl border border-gray-200 bg-white text-gray-600 font-bold text-sm transition-all hover:border-skyblue outline-none">15:00 - 17:00</button>
+                    </div>
+                </div>
+
+                <button id="btn-next-2" disabled onclick="nextStep()" class="w-full mt-8 py-3 bg-darkblue disabled:bg-gray-300 disabled:opacity-70 disabled:cursor-not-allowed text-white rounded-xl font-bold transition-colors outline-none">
+                    Lanjut Konfirmasi Alamat
+                </button>
+            </div>
+
+            <!-- Step 3: Konfirmasi Alamat -->
+            <div id="step-3" class="space-y-4 hidden">
+                <h2 class="text-2xl font-bold text-darkblue mb-2">Detail Alamat</h2>
+                <p class="text-gray-500 text-sm mb-4">Pastikan alamat kos/rumah Anda sudah sesuai untuk memudahkan tim kami.</p>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-map-location-dot text-skyblue"></i> Alamat Lengkap & Patokan
+                    </label>
+                    <textarea id="booking-address" rows="4" oninput="validateStep3()" class="w-full p-3 border border-gray-200 rounded-xl outline-none focus:border-skyblue focus:ring-2 focus:ring-lightsky resize-none">Jl. Majapahit No. 10, Mataram (Kosan Bu Ratna, Kamar 04)</textarea>
+                </div>
+
+                <button id="btn-next-3" onclick="nextStep()" class="w-full mt-6 py-3 bg-darkblue disabled:bg-gray-300 disabled:opacity-70 disabled:cursor-not-allowed text-white rounded-xl font-bold transition-colors outline-none">
+                    Lihat Ringkasan Pesanan
+                </button>
+            </div>
+
+            <!-- Step 4: Ringkasan & Konfirmasi -->
+            <div id="step-4" class="space-y-6 hidden">
+                <h2 class="text-2xl font-bold text-darkblue mb-2">Ringkasan Pesanan</h2>
+                
+                <div class="bg-white p-5 rounded-2xl border border-lightsky shadow-sm space-y-4">
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-100">
+                        <div>
+                            <p class="text-sm text-gray-500 font-bold mb-1">Paket Pilihan</p>
+                            <p id="summary-package" class="font-bold text-darkblue text-lg">-</p>
+                        </div>
+                        <span id="summary-price" class="text-lg font-bold text-gray-800">-</span>
+                    </div>
+
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-100">
+                        <div>
+                            <p class="text-sm text-gray-500 font-bold mb-1">Jadwal</p>
+                            <p id="summary-datetime" class="font-bold text-gray-800">-</p>
+                        </div>
+                        <i class="fa-regular fa-calendar-check text-2xl text-skyblue"></i>
+                    </div>
+
+                    <div>
+                        <p class="text-sm text-gray-500 font-bold mb-1">Alamat Tujuan</p>
+                        <p id="summary-address" class="text-sm text-gray-800">-</p>
+                    </div>
+                </div>
+
+                <div class="bg-neutralbg p-4 rounded-xl flex items-center gap-3 border border-lightsky">
+                    <i class="fa-brands fa-whatsapp text-2xl text-whatsapp shrink-0"></i>
+                    <p class="text-xs text-gray-600">Setelah konfirmasi, Anda akan menerima pesan WhatsApp untuk detail lebih lanjut dan proses pembayaran.</p>
+                </div>
+
+                <button onclick="submitBooking()" class="w-full py-4 bg-skyblue hover:bg-blue-400 text-white rounded-xl font-bold text-lg transition-colors shadow-lg shadow-skyblue/40 flex justify-center items-center gap-2 outline-none">
+                    <i class="fa-solid fa-circle-check"></i> Konfirmasi Pesanan
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= TAB: PROFIL ================= -->
+        <div id="tab-profil" class="hidden fade-in text-center py-20">
+            <div class="w-20 h-20 bg-lightsky rounded-full flex items-center justify-center mx-auto mb-4 text-skyblue">
+                <i class="fa-solid fa-user text-4xl"></i>
+            </div>
+            <h2 class="text-xl font-bold text-darkblue">Budi Santoso</h2>
+            <p class="text-gray-500 mt-1 mb-8">08123456789</p>
+            <button onclick="window.location.href='auth.html'" class="px-8 py-3 bg-red-100 text-red-600 hover:bg-red-200 font-bold rounded-full transition-colors outline-none">
+                <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i> Keluar Akun
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation (Mobile Only) -->
+    <div class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 pb-safe z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <div class="flex justify-around items-center p-2">
+            <button onclick="switchTab('dashboard')" id="nav-mob-dashboard" class="nav-mob flex flex-col items-center p-2 w-16 transition-colors text-darkblue outline-none">
+                <i class="fa-solid fa-house text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">Beranda</span>
+            </button>
+            <button onclick="switchTab('pesan')" id="nav-mob-pesan" class="nav-mob flex flex-col items-center p-2 w-16 transition-colors text-gray-400 outline-none">
+                <i class="fa-solid fa-circle-plus text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">Pesan</span>
+            </button>
+            <button onclick="switchTab('riwayat')" id="nav-mob-riwayat" class="nav-mob flex flex-col items-center p-2 w-16 transition-colors text-gray-400 outline-none">
+                <i class="fa-solid fa-clock-rotate-left text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">Riwayat</span>
+            </button>
+            <button onclick="switchTab('profil')" id="nav-mob-profil" class="nav-mob flex flex-col items-center p-2 w-16 transition-colors text-gray-400 outline-none">
+                <i class="fa-solid fa-user text-xl mb-1"></i>
+                <span class="text-[10px] font-bold">Profil</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Script Logika UI -->
+    <script>
+        // --- LOGIKA TAB NAVIGASI ---
+        function switchTab(tabName) {
+            const tabs = ['dashboard', 'pesan', 'riwayat', 'profil'];
+            tabs.forEach(t => document.getElementById('tab-' + t).classList.add('hidden'));
+            document.getElementById('tab-' + tabName).classList.remove('hidden');
+
+            const desktopNavs = document.querySelectorAll('.nav-desktop');
+            desktopNavs.forEach(nav => {
+                nav.classList.remove('text-darkblue');
+                nav.classList.add('text-gray-500');
+            });
+            if(tabName !== 'profil') {
+                const activeDesktopNav = document.getElementById('nav-desktop-' + tabName);
+                if(activeDesktopNav) {
+                    activeDesktopNav.classList.remove('text-gray-500');
+                    activeDesktopNav.classList.add('text-darkblue');
+                }
+            }
+
+            const mobNavs = document.querySelectorAll('.nav-mob');
+            mobNavs.forEach(nav => {
+                nav.classList.remove('text-darkblue');
+                nav.classList.add('text-gray-400');
+            });
+            const activeMobNav = document.getElementById('nav-mob-' + tabName);
+            if(activeMobNav) {
+                activeMobNav.classList.remove('text-gray-400');
+                activeMobNav.classList.add('text-darkblue');
+            }
+            
+            window.scrollTo(0,0);
+        }
+
+        function cancelOrder(orderId) {
+            if(confirm('Apakah Anda yakin ingin membatalkan pesanan ' + orderId + '?')) {
+                alert('Pesanan ' + orderId + ' berhasil dibatalkan. Menunggu konfirmasi admin.');
+            }
+        }
+
+        // --- LOGIKA FORM PEMESANAN (WIZARD 4 LANGKAH) ---
+        let currentStep = 1;
+        let bookingData = {
+            package: '',
+            price: 0,
+            date: '',
+            time: '',
+            address: document.getElementById('booking-address').value
+        };
+
+        // Format Uang
+        function formatRp(num) {
+            return 'Rp ' + num.toLocaleString('id-ID');
+        }
+
+        // Setup Tanggal Minimal (H-1)
+        document.addEventListener('DOMContentLoaded', () => {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const yyyy = tomorrow.getFullYear();
+            const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+            const dd = String(tomorrow.getDate()).padStart(2, '0');
+            document.getElementById('booking-date').min = `${yyyy}-${mm}-${dd}`;
+        });
+
+        // Tampilkan Step
+        function renderStep() {
+            for(let i = 1; i <= 4; i++) {
+                document.getElementById('step-' + i).classList.add('hidden');
+            }
+            document.getElementById('step-' + currentStep).classList.remove('hidden');
+            
+            // Update Progress Bar
+            document.getElementById('step-indicator-text').innerText = 'Langkah ' + currentStep + ' dari 4';
+            document.getElementById('progress-bar-fill').style.width = (currentStep * 25) + '%';
+            
+            // Update Back Button
+            document.getElementById('btn-back-step').style.visibility = currentStep > 1 ? 'visible' : 'hidden';
+
+            // Jika masuk step 4, isi ringkasan
+            if(currentStep === 4) {
+                document.getElementById('summary-package').innerText = bookingData.package;
+                document.getElementById('summary-price').innerText = formatRp(bookingData.price);
+                document.getElementById('summary-datetime').innerText = bookingData.date + ' | ' + bookingData.time;
+                document.getElementById('summary-address').innerText = bookingData.address;
+            }
+        }
+
+        function nextStep() {
+            if(currentStep < 4) {
+                currentStep++;
+                renderStep();
+                window.scrollTo(0,0);
+            }
+        }
+
+        function prevStep() {
+            if(currentStep > 1) {
+                currentStep--;
+                renderStep();
+                window.scrollTo(0,0);
+            }
+        }
+
+        // Logika Step 1: Pilih Paket
+        function selectPackage(name, price, element) {
+            bookingData.package = name;
+            bookingData.price = price;
+            
+            // Reset style semua card
+            document.querySelectorAll('.pkg-card').forEach(card => {
+                card.classList.remove('border-skyblue', 'bg-neutralbg');
+                card.classList.add('border-gray-100', 'bg-white');
+                card.querySelector('.indicator-circle').classList.remove('bg-skyblue', 'border-skyblue');
+                card.querySelector('.indicator-circle').classList.add('border-gray-300');
+                card.querySelector('.check-icon').classList.add('hidden');
+            });
+
+            // Aktifkan card yang diklik
+            element.classList.remove('border-gray-100', 'bg-white');
+            element.classList.add('border-skyblue', 'bg-neutralbg');
+            element.querySelector('.indicator-circle').classList.remove('border-gray-300');
+            element.querySelector('.indicator-circle').classList.add('bg-skyblue', 'border-skyblue');
+            element.querySelector('.check-icon').classList.remove('hidden');
+
+            document.getElementById('btn-next-1').disabled = false;
+        }
+
+        // Logika Step 2: Waktu
+        function selectTime(time, element) {
+            bookingData.time = time;
+            
+            document.querySelectorAll('.time-btn').forEach(btn => {
+                btn.classList.remove('border-skyblue', 'bg-skyblue', 'text-white');
+                btn.classList.add('border-gray-200', 'bg-white', 'text-gray-600');
+            });
+
+            element.classList.remove('border-gray-200', 'bg-white', 'text-gray-600');
+            element.classList.add('border-skyblue', 'bg-skyblue', 'text-white');
+
+            validateStep2();
+        }
+
+        function validateStep2() {
+            bookingData.date = document.getElementById('booking-date').value;
+            const btn = document.getElementById('btn-next-2');
+            if(bookingData.date && bookingData.time) {
+                btn.disabled = false;
+            } else {
+                btn.disabled = true;
+            }
+        }
+
+        // Logika Step 3: Alamat
+        function validateStep3() {
+            bookingData.address = document.getElementById('booking-address').value;
+            const btn = document.getElementById('btn-next-3');
+            if(bookingData.address.trim().length > 0) {
+                btn.disabled = false;
+            } else {
+                btn.disabled = true;
+            }
+        }
+
+        // Logika Submit
+        function submitBooking() {
+            alert(`SIMULASI WHATSAPP: "Pesanan dikonfirmasi, tim akan datang pada ${bookingData.date} pukul ${bookingData.time}."\n\n(Pesanan ${bookingData.package} berhasil dibuat!)`);
+            
+            // Pindah ke Riwayat dan Reset Wizard
+            switchTab('riwayat');
+            
+            // Reset State Form untuk pesanan berikutnya
+            setTimeout(() => {
+                currentStep = 1;
+                bookingData = { package: '', price: 0, date: '', time: '', address: 'Jl. Majapahit No. 10, Mataram (Kosan Bu Ratna, Kamar 04)' };
+                document.getElementById('booking-date').value = '';
+                document.getElementById('booking-address').value = bookingData.address;
+                
+                // Reset UI Step 1 & 2
+                document.getElementById('btn-next-1').disabled = true;
+                document.getElementById('btn-next-2').disabled = true;
+                
+                document.querySelectorAll('.pkg-card').forEach(card => {
+                    card.classList.remove('border-skyblue', 'bg-neutralbg');
+                    card.classList.add('border-gray-100', 'bg-white');
+                    card.querySelector('.indicator-circle').classList.remove('bg-skyblue', 'border-skyblue');
+                    card.querySelector('.indicator-circle').classList.add('border-gray-300');
+                    card.querySelector('.check-icon').classList.add('hidden');
+                });
+                
+                document.querySelectorAll('.time-btn').forEach(btn => {
+                    btn.classList.remove('border-skyblue', 'bg-skyblue', 'text-white');
+                    btn.classList.add('border-gray-200', 'bg-white', 'text-gray-600');
+                });
+                
+                renderStep();
+            }, 500);
+        }
+    </script>
+</body>
+</html>

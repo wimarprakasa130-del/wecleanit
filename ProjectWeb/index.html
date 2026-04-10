@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeCleanIt | Jasa Bersih Profesional & Terpercaya Mataram</title>
+    
+    <!-- Google Fonts: Syne & DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkblue: '#0F5A96',   // Untuk teks judul agar kontras dan terbaca
+                        skyblue: '#74B4D9',    // Warna Dominan Baru
+                        lightsky: '#E0F2FE',   // Sky blue sangat muda
+                        neutralbg: '#F0F9FF',  // Latar belakang netral kebiruan
+                        whatsapp: '#25D366'    // Hijau WA
+                    },
+                    fontFamily: {
+                        sans: ['DM Sans', 'sans-serif'],
+                        heading: ['Syne', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Carousel Animation */
+        .carousel-item {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            position: absolute;
+            inset: 0;
+        }
+        .carousel-item.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="font-sans bg-neutralbg text-gray-800 antialiased">
+
+    <!-- CONFIGURATION SCRIPT -->
+    <script>
+        const WA_NUMBER = "6281234567890"; 
+        
+        function openWhatsApp(paket = "") {
+            let message = "Halo WeCleanIt! Saya ingin pesan layanan bersih-bersih profesional.";
+            if(paket) {
+                message = `Halo WeCleanIt! Saya tertarik memesan paket *${paket}*. Boleh info jadwal yang tersedia?`;
+            }
+            const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Hero Carousel Logic
+        document.addEventListener("DOMContentLoaded", () => {
+            const items = document.querySelectorAll('.carousel-item');
+            let currentIndex = 0;
+
+            function nextSlide() {
+                items[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % items.length;
+                items[currentIndex].classList.add('active');
+            }
+
+            // Ganti gambar setiap 4 detik
+            setInterval(nextSlide, 4000);
+        });
+    </script>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i class="fa-solid fa-sparkles text-skyblue text-2xl mr-2"></i>
+                    <span class="font-heading font-bold text-2xl text-darkblue tracking-tight">WeCleanIt</span>
+                </div>
+                
+                <!-- Center Navbar Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#layanan" class="text-sm font-bold text-gray-600 hover:text-skyblue transition-colors">Layanan</a>
+                    <a href="#cara-kerja" class="text-sm font-bold text-gray-600 hover:text-skyblue transition-colors">Cara Kerja</a>
+                    <a href="#testimoni" class="text-sm font-bold text-gray-600 hover:text-skyblue transition-colors">Testimoni</a>
+                    <a href="#harga" class="text-sm font-bold text-gray-600 hover:text-skyblue transition-colors">Harga</a>
+                </div>
+
+                <!-- Small CTA -->
+                <button onclick="openWhatsApp()" class="bg-skyblue hover:bg-blue-400 text-white px-6 py-2 rounded-full font-bold text-sm transition-all shadow-md">
+                    Pesan
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Floating WhatsApp -->
+    <button onclick="openWhatsApp()" class="fixed bottom-6 right-6 bg-whatsapp hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-xl z-50 flex items-center justify-center transition-transform hover:scale-110 active:scale-95">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </button>
+
+    <!-- 1. Hero Section (Clean & Minimalist) -->
+    <section class="relative h-[85vh] md:h-[90vh] flex items-center justify-center overflow-hidden bg-darkblue">
+        <!-- Carousel Backgrounds -->
+        <div class="absolute inset-0 z-0">
+            <div class="carousel-item active bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1567083165457-709a99bb14bf?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="carousel-item bg-cover bg-center" style="background-image: url('https://plus.unsplash.com/premium_photo-1733306438981-68d4e556b6a4?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="carousel-item bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/3770102/pexels-photo-3770102.jpeg');"></div>
+            <div class="carousel-item bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/33753427/pexels-photo-33753427.jpeg');"></div>
+        </div>
+
+        <!-- Overlay Gelap agar Teks Putih Terbaca Jelas -->
+        <div class="absolute inset-0 bg-gradient-to-b from-darkblue/70 via-darkblue/50 to-skyblue/60 z-10"></div>
+
+        <!-- Content -->
+        <div class="max-w-4xl mx-auto px-4 relative z-20 text-center text-white mt-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-skyblue/30 backdrop-blur-md border border-skyblue/50 mb-6 text-xs md:text-sm font-bold tracking-wider uppercase shadow-lg">
+                <i class="fa-solid fa-location-dot text-white"></i> Khusus Mataram & Sekitarnya
+            </div>
+
+            <h1 class="font-heading font-extrabold text-5xl md:text-7xl mb-6 leading-tight drop-shadow-lg">
+                Kamar Bersih.<br>Hidup Nyaman.
+            </h1>
+            
+            <p class="text-lg md:text-xl text-lightsky mb-10 font-medium drop-shadow-md">
+                Layanan kebersihan profesional, aman, dan terpercaya.
+            </p>
+
+            <button onclick="openWhatsApp()" class="px-10 py-4 bg-skyblue hover:bg-lightsky hover:text-darkblue text-white rounded-full font-extrabold text-lg transition-all shadow-xl shadow-skyblue/40 flex items-center justify-center gap-3 mx-auto transform hover:-translate-y-1">
+                Pesan Sekarang
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- 2. Trust Pillars (Sky Blue Dominant) -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-8 rounded-3xl bg-neutralbg border border-skyblue/20 transition-transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-skyblue text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl shadow-lg shadow-skyblue/30">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-darkblue mb-3">Tim Profesional</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Staf terlatih dan berpengalaman untuk hasil kebersihan maksimal di setiap sudut.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-neutralbg border border-skyblue/20 transition-transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-skyblue text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl shadow-lg shadow-skyblue/30">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-darkblue mb-3">Aman & Terpercaya</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Keamanan barang Anda adalah prioritas kami dengan sistem kerja yang transparan.</p>
+                </div>
+                <div class="p-8 rounded-3xl bg-neutralbg border border-skyblue/20 transition-transform hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-skyblue text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl shadow-lg shadow-skyblue/30">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-darkblue mb-3">Jadwal Fleksibel</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Tentukan sendiri waktu pembersihan yang paling cocok dengan kesibukan Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Layanan -->
+    <section class="py-20 bg-lightsky/50" id="layanan">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-darkblue mb-4">Layanan Unggulan Kami</h2>
+                <div class="w-20 h-1.5 bg-skyblue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-skyblue/20 hover:shadow-xl hover:shadow-skyblue/20 transition-all">
+                    <h3 class="font-heading font-bold text-2xl text-darkblue mb-4">Bersih Standar</h3>
+                    <ul class="space-y-4 mb-8 text-sm text-gray-600">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-skyblue"></i> Sapu & Pel Menyeluruh</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-skyblue"></i> Rapikan Kasur & Meja</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-skyblue"></i> Buang Sampah</li>
+                    </ul>
+                </div>
+                
+                <!-- Card 2 (Highlight Sky Blue) -->
+                <div class="bg-skyblue rounded-3xl p-8 shadow-xl shadow-skyblue/40 text-white transform md:-translate-y-4 border-4 border-white">
+                    <div class="inline-block bg-white text-skyblue text-xs font-bold px-4 py-1.5 rounded-full mb-4 uppercase tracking-wider">
+                        Paling Populer
+                    </div>
+                    <h3 class="font-heading font-bold text-2xl mb-4">Bersih Menyeluruh</h3>
+                    <ul class="space-y-4 mb-8 text-sm text-white/90">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-white"></i> Semua Fitur Standar</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-white"></i> Sikat Kamar Mandi</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-white"></i> Pembersihan Kaca & Cermin</li>
+                    </ul>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-white rounded-3xl p-8 shadow-sm border border-skyblue/20 hover:shadow-xl hover:shadow-skyblue/20 transition-all">
+                    <h3 class="font-heading font-bold text-2xl text-darkblue mb-4">Bersih Ekstra</h3>
+                    <ul class="space-y-4 mb-8 text-sm text-gray-600">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-skyblue"></i> Semua Fitur Menyeluruh</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-skyblue"></i> Sedot Debu Kasur & Karpet</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-skyblue"></i> Disinfektan Seluruh Ruangan</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Cara Kerja -->
+    <section class="py-20 bg-white" id="cara-kerja">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-darkblue mb-4">Cara Kerja Simple</h2>
+                <p class="text-gray-500">Tiga langkah mudah menuju kamar yang nyaman.</p>
+            </div>
+
+            <div class="relative pl-8 md:pl-0">
+                <!-- Garis Vertikal -->
+                <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-lightsky transform md:-translate-x-1/2"></div>
+                
+                <!-- Step 1 -->
+                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between mb-12">
+                    <div class="absolute left-[-39px] md:left-1/2 w-12 h-12 rounded-full bg-skyblue text-white flex items-center justify-center font-bold border-4 border-white transform md:-translate-x-1/2 z-10 shadow-md">1</div>
+                    <div class="md:w-5/12 ml-6 md:ml-0 md:text-right pr-0 md:pr-10">
+                        <h4 class="font-heading font-bold text-xl text-darkblue mb-2">Pilih Paket & Jadwal</h4>
+                        <p class="text-gray-500 text-sm">Hubungi kami via WhatsApp, pilih paket yang sesuai, dan tentukan waktu pembersihan.</p>
+                    </div>
+                    <div class="hidden md:block w-5/12"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between mb-12">
+                    <div class="absolute left-[-39px] md:left-1/2 w-12 h-12 rounded-full bg-skyblue text-white flex items-center justify-center font-bold border-4 border-white transform md:-translate-x-1/2 z-10 shadow-md">2</div>
+                    <div class="hidden md:block w-5/12"></div>
+                    <div class="md:w-5/12 ml-6 md:ml-0 pl-0 md:pl-10">
+                        <h4 class="font-heading font-bold text-xl text-darkblue mb-2">Tim Kami Datang</h4>
+                        <p class="text-gray-500 text-sm">Tim profesional kami akan datang tepat waktu membawa peralatan lengkap.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative flex flex-col md:flex-row items-start md:items-center justify-between">
+                    <div class="absolute left-[-39px] md:left-1/2 w-12 h-12 rounded-full bg-skyblue text-white flex items-center justify-center font-bold border-4 border-white transform md:-translate-x-1/2 z-10 shadow-md">3</div>
+                    <div class="md:w-5/12 ml-6 md:ml-0 md:text-right pr-0 md:pr-10">
+                        <h4 class="font-heading font-bold text-xl text-darkblue mb-2">Kamar Bersih & Wangi</h4>
+                        <p class="text-gray-500 text-sm">Santai dan nikmati hasil kerja kami. Bayar setelah pengerjaan selesai.</p>
+                    </div>
+                    <div class="hidden md:block w-5/12"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Testimoni -->
+    <section class="py-20 bg-neutralbg" id="testimoni">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-darkblue mb-4">Apa Kata Pelanggan?</h2>
+                <div class="w-20 h-1.5 bg-skyblue mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-lightsky">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-600 mb-6 italic text-sm">"Sangat ngebantu buat aku yang sibuk kuliah. Kamar mandi yang tadinya kotor banget langsung bersih cling! Profesional banget."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-skyblue text-white rounded-full flex items-center justify-center font-bold">R</div>
+                        <div><p class="font-bold text-darkblue text-sm">Rina S.</p><p class="text-xs text-gray-500">Mahasiswa</p></div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-lightsky">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-600 mb-6 italic text-sm">"Alatnya lengkap, stafnya ramah dan kerjanya detail. Paling suka sama paket bersih menyeluruh. Langganan deh pokoknya."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-skyblue text-white rounded-full flex items-center justify-center font-bold">D</div>
+                        <div><p class="font-bold text-darkblue text-sm">Dimas A.</p><p class="text-xs text-gray-500">Karyawan Swasta</p></div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-lightsky">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                    <p class="text-gray-600 mb-6 italic text-sm">"Gak ribet, tinggal chat WA, atur jadwal, beres. Solusi banget buat yang males bersih-bersih pas weekend."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-skyblue text-white rounded-full flex items-center justify-center font-bold">N</div>
+                        <div><p class="font-bold text-darkblue text-sm">Nadia P.</p><p class="text-xs text-gray-500">Mahasiswa</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Harga -->
+    <section class="py-20 bg-white" id="harga">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-darkblue mb-4">Daftar Harga</h2>
+                <p class="text-gray-500">Transparan dan tanpa biaya tersembunyi.</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row justify-center items-stretch gap-8">
+                <!-- Paket Standar -->
+                <div class="w-full lg:w-1/3 bg-neutralbg rounded-3xl p-8 border border-lightsky flex flex-col">
+                    <div class="text-center mb-6">
+                        <h3 class="font-heading font-bold text-xl text-darkblue mb-2">Standar</h3>
+                        <span class="text-3xl font-bold text-skyblue">Rp 50.000</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-600 text-left flex-grow">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-skyblue mt-1"></i> Sapu & pel lantai</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-skyblue mt-1"></i> Rapihkan kasur & meja</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-skyblue mt-1"></i> Buang sampah</li>
+                        <li class="flex items-start gap-3"><i class="fa-regular fa-clock text-skyblue mt-1"></i> Estimasi 45-60 menit</li>
+                    </ul>
+                    <button onclick="openWhatsApp('Bersih Standar')" class="w-full py-3 rounded-full border-2 border-skyblue text-skyblue font-bold hover:bg-skyblue hover:text-white transition-colors mt-auto">
+                        Pesan Standar
+                    </button>
+                </div>
+
+                <!-- Paket Menyeluruh -->
+                <div class="w-full lg:w-1/3 bg-skyblue rounded-3xl p-8 shadow-xl transform lg:scale-110 border-4 border-white relative z-10 flex flex-col">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-darkblue text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase">
+                        Rekomendasi
+                    </div>
+                    <div class="text-center mb-6">
+                        <h3 class="font-heading font-bold text-xl text-white mb-2">Menyeluruh</h3>
+                        <span class="text-4xl font-bold text-white">Rp 85.000</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-sm text-white text-left flex-grow">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-darkblue mt-1"></i> <strong>Termasuk Standar</strong></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-darkblue mt-1"></i> Sikat kamar mandi</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-circle-check text-darkblue mt-1"></i> Lap kaca & lemari</li>
+                        <li class="flex items-start gap-3"><i class="fa-regular fa-clock text-darkblue mt-1"></i> Estimasi 1.5 - 2 jam</li>
+                    </ul>
+                    <button onclick="openWhatsApp('Bersih Menyeluruh')" class="w-full py-3 rounded-full bg-white text-skyblue font-bold hover:bg-lightsky transition-colors shadow-md mt-auto">
+                        Pesan Sekarang
+                    </button>
+                </div>
+
+                <!-- Paket Ekstra -->
+                <div class="w-full lg:w-1/3 bg-neutralbg rounded-3xl p-8 border border-lightsky flex flex-col">
+                    <div class="text-center mb-6">
+                        <h3 class="font-heading font-bold text-xl text-darkblue mb-2">Ekstra</h3>
+                        <span class="text-3xl font-bold text-skyblue">Rp 150.000</span>
+                    </div>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-600 text-left flex-grow">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-skyblue mt-1"></i> <strong>Termasuk Menyeluruh</strong></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-skyblue mt-1"></i> Bersihkan kerak membandel</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-skyblue mt-1"></i> Disinfektan ruangan</li>
+                        <li class="flex items-start gap-3"><i class="fa-regular fa-clock text-skyblue mt-1"></i> Estimasi 2 - 3 jam</li>
+                    </ul>
+                    <button onclick="openWhatsApp('Bersih Ekstra')" class="w-full py-3 rounded-full border-2 border-skyblue text-skyblue font-bold hover:bg-skyblue hover:text-white transition-colors mt-auto">
+                        Pesan Ekstra
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CTA Akhir -->
+    <section class="py-24 bg-skyblue text-white text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading font-bold text-4xl md:text-5xl mb-6 drop-shadow-md">Siap Memiliki Kamar yang Lebih Nyaman?</h2>
+            <p class="text-lg md:text-xl mb-10 text-white/90">Pesan layanan hari ini dan rasakan bedanya. Slot terbatas!</p>
+            <button onclick="openWhatsApp()" class="px-10 py-4 bg-white text-skyblue hover:bg-neutralbg rounded-full font-bold text-lg transition-all shadow-xl inline-flex items-center gap-3 transform hover:scale-105">
+                <i class="fa-brands fa-whatsapp text-2xl"></i> Hubungi Kami Sekarang
+            </button>
+        </div>
+    </section>
+
+    <!-- 8. Footer -->
+    <footer class="bg-darkblue text-white pt-16 pb-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <i class="fa-solid fa-sparkles text-skyblue text-2xl mr-2"></i>
+                        <span class="font-heading font-bold text-2xl tracking-tight text-white">WeCleanIt</span>
+                    </div>
+                    <p class="text-lightsky text-sm leading-relaxed">Jasa kebersihan profesional, aman, dan terpercaya di Mataram yang fokus pada kenyamanan Anda.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-skyblue">Navigasi</h4>
+                    <ul class="space-y-3 text-sm text-lightsky">
+                        <li><a href="#layanan" class="hover:text-white transition-colors">Layanan</a></li>
+                        <li><a href="#cara-kerja" class="hover:text-white transition-colors">Cara Kerja</a></li>
+                        <li><a href="#testimoni" class="hover:text-white transition-colors">Testimoni</a></li>
+                        <li><a href="#harga" class="hover:text-white transition-colors">Daftar Harga</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-skyblue">Hubungi Kami</h4>
+                    <p class="text-sm text-lightsky mb-4 flex items-center gap-3">
+                        <i class="fa-solid fa-location-dot text-skyblue"></i> Area Layanan: Mataram & Sekitarnya
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-skyblue flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-instagram text-lg"></i>
+                        </a>
+                        <a onclick="openWhatsApp()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-skyblue cursor-pointer flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center text-xs text-lightsky">
+                &copy; 2026 WeCleanIt. Semua Hak Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
