@@ -58,12 +58,8 @@
         const WA_NUMBER = "6281234567890"; 
         
         function openWhatsApp(paket = "") {
-            let message = "Halo WeCleanIt! Saya ingin pesan layanan bersih-bersih profesional.";
-            if(paket) {
-                message = `Halo WeCleanIt! Saya tertarik memesan paket *${paket}*. Boleh info jadwal yang tersedia?`;
-            }
-            const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+            // Karena sistem sudah dinamis, kita redirect pemesanan ke halaman Login/Register
+            window.location.href = 'auth.php';
         }
 
         // Hero Carousel Logic
@@ -128,8 +124,20 @@
 
         <!-- Content -->
         <div class="max-w-4xl mx-auto px-4 relative z-20 text-center text-white mt-10">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-skyblue/30 backdrop-blur-md border border-skyblue/50 mb-6 text-xs md:text-sm font-bold tracking-wider uppercase shadow-lg">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-skyblue/30 backdrop-blur-md border border-skyblue/50 mb-4 text-xs md:text-sm font-bold tracking-wider uppercase shadow-lg">
                 <i class="fa-solid fa-location-dot text-white"></i> Khusus Mataram & Sekitarnya
+            </div>
+
+            <!-- PROMO BANNER (NEW) -->
+            <div class="inline-block w-full max-w-md mx-auto bg-gradient-to-r from-orange-400 to-red-500 rounded-2xl p-4 shadow-lg mb-6 transform hover:scale-105 transition-transform cursor-pointer" onclick="openWhatsApp()">
+                <div class="flex items-center justify-between text-white text-left">
+                    <div>
+                        <span class="bg-white text-red-500 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Promo Spesial</span>
+                        <p class="font-bold text-sm md:text-base mt-1">Diskon 20% Paket Ekstra!</p>
+                        <p class="text-xs text-white/80">Pakai kode: <strong class="bg-white/20 px-1 rounded">BERSIHKILAT20</strong></p>
+                    </div>
+                    <i class="fa-solid fa-gift text-3xl opacity-80"></i>
+                </div>
             </div>
 
             <h1 class="font-heading font-extrabold text-5xl md:text-7xl mb-6 leading-tight drop-shadow-lg">
