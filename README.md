@@ -9,28 +9,26 @@ Sistem ini mengubah cara tradisional (pesan manual lewat chat yang rentan miskom
 
 ## Menu Utama
 ```
-- User
+- Customer (Pelanggan)
     - Landing Page
-    - Search Page
-    - Profile Page
-    - Application View Page
-- Publisher
-    - Landing Page
-    - Search Page
-    - Profile Page
-    - Publisher Dashboard Page
-    - Application View Page
-    - Application Submission Page
-    - Application Edit Page
-- Moderator
-    - Landing Page
-    - Search Page
-    - Profile Page
-    - Application Verification Page
+    - Authentication Page (Login, Register, OTP)
+    - Dashboard (Pesanan Aktif & Jalan Pintas)
+    - Booking Page (Wizard Pemesanan 4 Langkah)
+    - Order History & Review Page
+    - Profile & Multi-Address Management Page
+- Admin (Pengelola)
+    - Admin Login Page
+    - Overview Dashboard (Statistik Keuangan & Operasional)
+    - Order Management Page (Konfirmasi, Tugaskan Staf, Selesai, Batal)
+    - Schedule/Slot Availability Page
+    - Staff/Cleaner Management Page
+    - Customer Data Page
+    - Package & Price Management Page
+    - Reports Page (Export CSV)
 ```
 
 ## Teknologi
-HTML, PHP, CSS, Javascript, CodeIgniter, MySQL
+HTML, PHP, CSS, Javascript, Tailwind, MySQL
 
 # Previous Description
 
