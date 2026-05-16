@@ -198,29 +198,52 @@ if (isset($_SESSION['user_id'])) {
         });
 
         // --- LOGIN ---
-        document.getElementById('form-login').addEventListener('submit', function(e) {
+        // document.getElementById('form-login').addEventListener('submit', function(e) {
+        //     e.preventDefault();
+        //     const btn = document.getElementById('btn-login');
+        //     btn.innerHTML = 'Memeriksa... <i class="fa-solid fa-spinner fa-spin"></i>'; btn.disabled = true;
+
+        //     const fd = new FormData();
+        //     fd.append('action', 'login');
+        //     fd.append('phone', document.getElementById('login-phone').value);
+        //     fd.append('password', document.getElementById('login-password').value);
+
+        //     fetch('api/auth_api.php', { method: 'POST', body: fd })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         if(data.status === 'success') {
+        //             showToast('Login berhasil! Mengalihkan...', 'success');
+        //             setTimeout(() => window.location.href = data.redirect, 1000);
+        //         } else {
+        //             showToast(data.message, 'error');
+        //         }
+        //     })
+        //     .catch(() => showToast('Terjadi kesalahan jaringan.', 'error'))
+        //     .finally(() => { btn.innerHTML = 'Masuk <i class="fa-solid fa-arrow-right"></i>'; btn.disabled = false; });
+        // });
+        document.getElementById('form-login').addEventListener('submit', function(e){
             e.preventDefault();
             const btn = document.getElementById('btn-login');
-            btn.innerHTML = 'Memeriksa... <i class="fa-solid fa-spinner fa-spin"></i>'; btn.disabled = true;
+            btn.innerHTML = 'Memeriksa... <i class"fa-solid fa-spinner fa-spin"></i>'; btn.disabled = true;
 
             const fd = new FormData();
             fd.append('action', 'login');
             fd.append('phone', document.getElementById('login-phone').value);
             fd.append('password', document.getElementById('login-password').value);
 
-            fetch('api/auth_api.php', { method: 'POST', body: fd })
+            fetch('api/auth_api.php',{method: 'POST', body: fd })
             .then(res => res.json())
             .then(data => {
-                if(data.status === 'success') {
-                    showToast('Login berhasil! Mengalihkan...', 'success');
+                if(data.status === 'success'){
+                    showToast('login berhasil! Mengalihkan...','success');
                     setTimeout(() => window.location.href = data.redirect, 1000);
                 } else {
                     showToast(data.message, 'error');
                 }
             })
             .catch(() => showToast('Terjadi kesalahan jaringan.', 'error'))
-            .finally(() => { btn.innerHTML = 'Masuk <i class="fa-solid fa-arrow-right"></i>'; btn.disabled = false; });
-        });
+            .finally(() => {btn.innerHTML = 'Masuk <i class="fa-solid fa-arrow-right"></i>'; btn.disabled = false;})
+        })
     </script>
 </body>
 </html>
